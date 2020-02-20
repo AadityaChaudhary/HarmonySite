@@ -196,12 +196,39 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _submitProgram() async {
-        var url = "";
+        var url = "http://localhost:10000/";
         print("name '" + name + "' \n" + code);
         var response = await http.post(url, body:{'code' : "name '" + name + "' \n" + code});
 
-        print(response.statusCode == 200 ? "ok" : "bad");
+        print(response.statusCode);
 
+        if(response.statusCode == 400) {
+          _showDialog();
+        }
+
+  }
+
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Ruh Roh"),
+          content: new Text("Looks like your code was bad"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _popupBot(String name, String desc) {
