@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 
 void main() => runApp(MyApp());
 
@@ -162,6 +163,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
             ),
           TextField(
+
+            //enableSuggestions: true,
                 onChanged: (value) {
                   setState(() {
                     code = value;
@@ -169,11 +172,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 cursorColor: Colors.amber,
             style: TextStyle(
+              fontFamily: "Mono",
               color: Colors.white,
               //fontSize:
             ),
                 decoration: InputDecoration(
-
+                  //prefixIcon: Icon(Icons.arrow_right),
                   border: OutlineInputBorder(),
                   fillColor: Color.fromARGB(100, 35, 39, 42),
                   filled: true,
